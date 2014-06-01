@@ -5,7 +5,7 @@ angular.module('giftcardsCropApp')
     var fileReader = new FileReader();
 
     return {
-      templateUrl: 'views/partials/file-upload.html',
+      templateUrl: 'views/partials/imageupload.html',
       restrict: 'A',
       scope: {
         uploaded: '&onUpload'
