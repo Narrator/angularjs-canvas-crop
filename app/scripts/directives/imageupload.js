@@ -27,6 +27,9 @@ angular.module('giftcardsCropApp')
         elem.find('.img-upload-file-input').on('change', function (evt) {
           var file = evt.target.files[0];
 
+          // Set the rotation
+          scope.getFileOrientation(evt.target.files);
+
           if (file.size < 1) {
             console.log('Whoa there! No image found');
             return false;
@@ -69,6 +72,15 @@ angular.module('giftcardsCropApp')
           ctx.drawImage(image, (canvas.width / 2 - image.width / 2), (canvas.height / 2 - image.height / 2));
 
           return canvas.toDataURL();
+        };
+
+        scope.getFileOrientation = function(files) {
+          EXIF.getData(files[0], function() {
+            var orientation = EXIF.getTag(this,"Orientation");
+            if(typeof(orientation) !== 'undefined') {
+              scope.rotateAngle = orientation;
+            }
+          });
         };
       }
     };

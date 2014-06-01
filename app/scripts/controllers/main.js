@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('giftcardsCropApp')
-  .controller('MainCtrl', function ($scope, $location) {
+  .controller('MainCtrl', function ($scope) {
     $scope.uploaded = false;
     $scope.uploadSrc = '';
 

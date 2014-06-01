@@ -2,6 +2,10 @@
 
 angular.module('giftcardsCropApp')
   .controller('FinishCtrl', function ($scope, $location) {
+    /*
+      Get the cropped image created in the previous route
+      If it's not available redirect them to the Upload page
+     */
     var source = angular.element('#crop-image-1').get(0);
     if(typeof(source) !== 'undefined') {
       $scope.imgSrc = source.src;
