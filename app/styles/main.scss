@@ -1,0 +1,26 @@
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+
+@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+
+.alert-incomplete {
+  background-color:#f7f7f7;
+  border: #ebebeb 1px solid;
+}
+
+.img-upload-file-input {
+  display:none!important;
+}
+
+.btn-giftcards {
+  background-color:#f36f21;
+  color:#fff;
+}
+
+.btn-crop-margin {
+  margin-top:20px;
+}
+
+.row-vertical-margin {
+  margin-top:20px;
+
+}
