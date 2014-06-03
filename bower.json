@@ -13,7 +13,8 @@
     "angular-route": ">=1.2.*",
     "font-awesome":"~4.1",
     "jcrop":"0.9.12",
-    "ios-imagefile-megapixel": "master"
+    "ios-imagefile-megapixel": "master",
+    "exif":"https://github.com/jseidelin/exif-js.git#master"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

@@ -74,10 +74,10 @@ angular.module('giftcardsCropApp')
           return canvas.toDataURL();
         };
 
-        scope.getFileOrientation = function(files) {
-          EXIF.getData(files[0], function() {
-            var orientation = EXIF.getTag(this,"Orientation");
-            if(typeof(orientation) !== 'undefined') {
+        scope.getFileOrientation = function (files) {
+          EXIF.getData(files[0], function () {
+            var orientation = EXIF.getTag(this, "Orientation");
+            if (typeof(orientation) !== 'undefined') {
               scope.rotateAngle = orientation;
             }
           });
