@@ -1,3 +1,4 @@
+/*global jQuery:false */
 'use strict';
 
 angular.module('giftcardsCropApp')
@@ -66,10 +67,10 @@ angular.module('giftcardsCropApp')
             var selection = [0, 0, (imgHeight / imgWidth < 0.75) ? 0.75 * imgWidth : imgWidth, (imgHeight / imgWidth > 0.75) ? 0.75 * imgHeight : imgHeight];
             if (typeof(incoming) !== 'undefined') {
               selection = [
-                incoming['x'],
-                incoming['y'],
-                incoming['x'] + incoming['w'],
-                incoming['y'] + incoming['h']
+                incoming.x,
+                incoming.y,
+                incoming.x + incoming.w,
+                incoming.y + incoming.h
               ];
             }
 
@@ -100,17 +101,17 @@ angular.module('giftcardsCropApp')
           targetImage = element.find('img');
           targetImage.attr('src', encodedImage);
 
-          var img = document.createElement("img");
+          var img = document.createElement('img');
           img.id = 'pic';
           img.src = encodedImage;
           img.onload = function () {
-            var sourceCanvas = document.createElement("canvas");
+            var sourceCanvas = document.createElement('canvas');
             sourceCanvas.width = img.width;
             sourceCanvas.height = img.height;
             sourceCanvas.style.display = 'none';
             sourceCanvas.id = 'sourceCanvas';
 
-            var exportCanvas = document.createElement("canvas");
+            var exportCanvas = document.createElement('canvas');
             exportCanvas.id = 'exportCanvas';
             exportCanvas.style.display = 'none';
             exportCanvas.width = 1050;

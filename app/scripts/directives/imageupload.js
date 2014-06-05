@@ -1,3 +1,5 @@
+/*global MegaPixImage:false */
+/*global EXIF:false */
 'use strict';
 
 angular.module('giftcardsCropApp')
@@ -67,7 +69,7 @@ angular.module('giftcardsCropApp')
           canvas.height = (image.height > scope.minSize) ? image.height : scope.minSize;
 
           var ctx = canvas.getContext('2d');
-          ctx.fillStyle = "rgb(255,255,255)";
+          ctx.fillStyle = 'rgb(255,255,255)';
           ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(image, (canvas.width / 2 - image.width / 2), (canvas.height / 2 - image.height / 2));
 
@@ -76,7 +78,7 @@ angular.module('giftcardsCropApp')
 
         scope.getFileOrientation = function (files) {
           EXIF.getData(files[0], function () {
-            var orientation = EXIF.getTag(this, "Orientation");
+            var orientation = EXIF.getTag(this, 'Orientation');
             if (typeof(orientation) !== 'undefined') {
               scope.rotateAngle = orientation;
             }
