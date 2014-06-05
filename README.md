@@ -21,7 +21,7 @@ $ npm install
 $ bower install
 ```
 
-Serve the presentation and monitor source files for changes
+Serve the application and monitor source files for changes
 ```sh
 $ grunt serve
 ```
