@@ -7,6 +7,18 @@ angular.module('giftcardsCropApp')
       $location.path('/');
     };
 
+    $scope.showCanvas = false;
+
+    $scope.toggleCanvas = function() {
+      if($scope.showCanvas) {
+        angular.element('#exportCanvas').hide();
+        $scope.showCanvas = false;
+      } else {
+        angular.element('#exportCanvas').show();
+        $scope.showCanvas = true;
+      }
+    };
+
     $scope.imageFinish = function() {
       /*
         Remove the existing image
