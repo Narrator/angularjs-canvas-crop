@@ -13,6 +13,9 @@ angular.module('giftcardsCropApp')
         uploaded: '&onUpload'
       },
       link: function (scope, elem) {
+        // What's the minimum size we want?
+        scope.minSize = 400;
+
         var previousImage = angular.element(document).find('#full-user-image').attr('src');
         if (typeof(previousImage) !== 'undefined') {
           scope.uploaded({src: previousImage});
@@ -31,6 +34,7 @@ angular.module('giftcardsCropApp')
 
           // Set the rotation
           scope.getFileOrientation(evt.target.files);
+          scope.getAllMetaData(evt.target.files);
 
           if (file.size < 1) {
             console.log('Whoa there! No image found');
@@ -38,6 +42,8 @@ angular.module('giftcardsCropApp')
           }
 
           fileReader.onloadend = function (e) {
+            console.log(scope.exifData);
+
             var img = new Image();
             img.id = 'pic';
             img.onload = function () {
@@ -47,7 +53,13 @@ angular.module('giftcardsCropApp')
               sourceImage.id = 'full-user-image';
               sourceImage.style.display = 'none';
               angular.element('body').append(sourceImage);
-              mpImg.render(sourceImage, { maxWidth: 2100, maxHeight: 1344, orientation: scope.rotateAngle });
+
+              if((img.width < scope.minSize) || (img.height < scope.minSize)) {
+                sourceImage.src = scope.createScaledImage(img);
+              } else {
+                mpImg.render(sourceImage,{ maxWidth: 2100, maxHeight: 1344, orientation: scope.rotateAngle });
+              }
+
               scope.uploaded({src: sourceImage.src});
             };
 
@@ -59,9 +71,7 @@ angular.module('giftcardsCropApp')
         });
 
         /*
-         Not used, but shows how if the image uploaded is less than
-         the minimum it would create an image to that size placing
-         the original image in the center of the image
+         Take the user's image and determine if it needs to be scaled up
          */
         scope.createScaledImage = function (image) {
           // Scale the image
@@ -75,6 +85,12 @@ angular.module('giftcardsCropApp')
           ctx.drawImage(image, (canvas.width / 2 - image.width / 2), (canvas.height / 2 - image.height / 2));
 
           return canvas.toDataURL();
+        };
+
+        scope.getAllMetaData = function(files) {
+          EXIF.getData(files[0], function() {
+            scope.exifData = EXIF.pretty(this);
+          });
         };
 
         scope.getFileOrientation = function (files) {
