@@ -46,7 +46,7 @@ angular.module('giftcardsCropApp')
 
             var img = new Image();
             img.id = 'pic';
-            img.onloadend = function () {
+            img.onload = function () {
               angular.element('#full-user-image').remove();
               var mpImg = new MegaPixImage(img);
               var sourceImage = document.createElement('img');
